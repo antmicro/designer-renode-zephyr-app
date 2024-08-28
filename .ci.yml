@@ -20,28 +20,9 @@ zephyr-3.6:
     RENODE_ZEPHYR_SDK_FILENAME: zephyr-sdk-${RENODE_ZEPHYR_SDK_VERSION}_linux-x86_64.tar.xz
     RENODE_ZEPHYR_VERSION: v3.6.0
   before_script:
-    - apt update && apt install -y wget
-    - wget https://apt.kitware.com/kitware-archive.sh && bash kitware-archive.sh
-    - echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections && apt install -y git cmake ninja-build gperf ccache dfu-util device-tree-compiler wget python3-dev python3-pip python3-setuptools python3-tk python3-wheel xz-utils file make gcc gcc-multilib g++-multilib libsdl2-dev libmagic1
-    - pip3 install west==${RENODE_WEST_VERSION} && export PATH=$HOME/.local/bin:"$PATH"
+    - ./scripts/prepare_zephyr.sh
   script:
-    - mkdir artifacts
-
-    - wget --no-verbose https://github.com/zephyrproject-rtos/sdk-ng/releases/download/v${RENODE_ZEPHYR_SDK_VERSION}/${RENODE_ZEPHYR_SDK_FILENAME} && tar xf ${RENODE_ZEPHYR_SDK_FILENAME} && pushd ${RENODE_ZEPHYR_SDK} && ./setup.sh -t all -c && popd && export ZEPHYR_SDK_INSTALL_DIR=$(pwd)/${RENODE_ZEPHYR_SDK}
-    - west init zephyrproject
-    - pushd zephyrproject/zephyr
-
-    - git checkout ${RENODE_ZEPHYR_VERSION} && west update
-    - west zephyr-export
-    - pip3 install -r scripts/requirements.txt
-    - west config manifest.group-filter -- +ci,+optional
-    - west update
-
-
-    # build shell example
-    - west build --pristine -b nrf52840dk_nrf52840 samples/subsys/shell/shell_module
-    - cp build/zephyr/zephyr.elf $CI_PROJECT_DIR/artifacts/software.elf
-
+    - ./scripts/build_application.sh
   artifacts:
     paths:
       - artifacts/
