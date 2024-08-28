@@ -1,0 +1,24 @@
+:name: Zephyr Application Example for Interactive System Designer
+:description: This script runs Zephyr Shell demo on NRF52840.
+
+using sysbus
+
+mach create "Zephyr Application Example"
+machine LoadPlatformDescription @https://raw.githubusercontent.com/antmicro/designer-renode-zephyr-app/main/simulation/simulation.repl
+
+showAnalyzer uart0
+
+macro reset
+"""
+    sysbus LoadELF @https://raw.githubusercontent.com/antmicro/designer-renode-zephyr-app/main/simulation/application.elf
+"""
+runMacro $reset
+
+echo
+"""
+Welcome to Zephyr Application Example Application simulation
+
+For more information, visit https://github.com/antmicro/designer-renode-zephyr-app
+
+Enter `start` to begin the simulation.
+"""
