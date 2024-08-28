@@ -9,5 +9,5 @@ export ZEPHYR_SDK_INSTALL_DIR=$(pwd)/${RENODE_ZEPHYR_SDK}
 mkdir ${ROOT_DIR}/artifacts
 cd zephyrproject/zephyr
 
-west build --pristine -b nrf52840dk_nrf52840 samples/subsys/shell/shell_module
+west build --pristine -b nrf52840dk_nrf52840 ${ROOT_DIR}/source
 cp build/zephyr/zephyr.elf ${ROOT_DIR}/artifacts/software.elf
