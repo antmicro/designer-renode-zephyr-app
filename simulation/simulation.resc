@@ -10,7 +10,7 @@ showAnalyzer uart0
 
 macro reset
 """
-    sysbus LoadELF @https://raw.githubusercontent.com/antmicro/designer-renode-zephyr-app/main/simulation/application.elf
+    sysbus LoadELF @https://github.com/antmicro/designer-renode-zephyr-app/releases/latest/download/software.elf
 """
 runMacro $reset
 
