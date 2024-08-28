@@ -24,6 +24,3 @@ pip3 install -r scripts/requirements.txt
 west config manifest.group-filter -- +ci,+optional
 west update
 popd
-
-export PATH=$HOME/.local/bin:"$PATH"
-export ZEPHYR_SDK_INSTALL_DIR=$(pwd)/${RENODE_ZEPHYR_SDK}
