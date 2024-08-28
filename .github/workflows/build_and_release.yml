@@ -8,12 +8,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Main Zephyr repository checkout
-        uses: actions/checkout@v4
-        with:
-          repository: zephyrproject-rtos/zephyr
-          path: zephyr
-
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
@@ -22,7 +16,7 @@ jobs:
       - name: Setup Zephyr project
         uses: zephyrproject-rtos/action-zephyr-setup@v1
         with:
-          app-path: zephyr
+          app-path: source
           toolchains: arm-zephyr-eabi
 
       - name: Build application
