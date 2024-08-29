@@ -4,7 +4,7 @@
 using sysbus
 
 mach create "Zephyr Application Example"
-machine LoadPlatformDescription @https://raw.githubusercontent.com/antmicro/designer-renode-zephyr-app/main/simulation/simulation.repl
+machine LoadPlatformDescription @https://raw.githubusercontent.com/antmicro/designer-renode-zephyr-app/main/simulation.repl
 
 showAnalyzer uart0
 
