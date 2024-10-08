@@ -3,6 +3,8 @@
 
 using sysbus
 
+$elf?=@https://github.com/antmicro/designer-renode-zephyr-app/releases/latest/download/software.elf
+
 mach create "Zephyr Application Example"
 machine LoadPlatformDescription @https://raw.githubusercontent.com/antmicro/designer-renode-zephyr-app/main/simulation.repl
 
@@ -10,7 +12,7 @@ showAnalyzer uart0
 
 macro reset
 """
-    sysbus LoadELF @https://github.com/antmicro/designer-renode-zephyr-app/releases/latest/download/software.elf
+    sysbus LoadELF $elf
 """
 runMacro $reset
 
