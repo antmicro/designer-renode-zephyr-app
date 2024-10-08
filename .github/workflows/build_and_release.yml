@@ -27,6 +27,16 @@ jobs:
           west build --pristine -b nrf52840dk_nrf52840 source/app
           cp build/zephyr/zephyr.elf artifacts/software.elf
 
+      - name: Run test in Renode
+        uses: antmicro/renode-test-action@v4
+        with:
+          tests-to-run: source/app/shell_module.robot
+          renode-arguments:
+            --variable KEYWORDS:${{ github.workspace }}/zephyr/tests/robot/common.robot
+            --variable RESC:@${{ github.workspace }}/simulation.resc
+            --variable UART:sysbus.uart0
+            --variable ELF:@${{ github.workspace }}/artifacts/software.elf
+
       - name: Store artifacts
         uses: actions/upload-artifact@v4.4.0
         with:
