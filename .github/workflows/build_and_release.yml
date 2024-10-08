@@ -31,6 +31,7 @@ jobs:
         uses: antmicro/renode-test-action@v4
         with:
           tests-to-run: source/app/shell_module.robot
+          artifacts-path: artifacts/results
           renode-arguments:
             --variable KEYWORDS:${{ github.workspace }}/zephyr/tests/robot/common.robot
             --variable RESC:@${{ github.workspace }}/simulation.resc
@@ -41,7 +42,9 @@ jobs:
         uses: actions/upload-artifact@v4.4.0
         with:
           name: build-artifacts
-          path: artifacts/software.elf
+          path: |
+            artifacts/software.elf
+            artifacts/results/*.html
 
       - name: Create Release
         id: create_release
