@@ -8,4 +8,4 @@ Additionally, GitHub Actions workflow is provided, which builds recent version o
 * `source/`, source code of simulated application; this is for of Zephyr's `shell_module` application source code (see [README](./source/README.md))
 * `simulation.resc`/`simulation.repl`, Renode script and platform description used for running actual simulation
 
-Copyright © 2024 [Antmicro](https://www.antmicro.com)
+Copyright © 2025 [Antmicro](https://www.antmicro.com)

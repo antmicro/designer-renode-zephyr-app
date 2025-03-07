@@ -24,7 +24,7 @@ jobs:
         run: |
           mkdir -p artifacts
 
-          west build --pristine -b nrf52840dk_nrf52840 source/app
+          west build --pristine -b nrf52840dk/nrf52840 source/app
           cp build/zephyr/zephyr.elf artifacts/software.elf
 
       - name: Run test in Renode
